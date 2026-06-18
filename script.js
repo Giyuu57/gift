@@ -3,7 +3,6 @@ const ctx = canvas.getContext('2d');
 let confettiParticles = [];
 let confettiActive = false;
 let confettiTimer = null;
-let birthdayConfettiShown = false;
 
 function updateClock() {
 	const now = new Date();
@@ -25,10 +24,6 @@ function updateCountdown() {
 		if (isToday) {
 			document.getElementById('countdown-grid').style.display = 'none';
 			document.getElementById('birthday-today-msg').classList.add('show');
-			if (!birthdayConfettiShown) {
-				birthdayConfettiShown = true;
-				launchConfetti(8000);
-			}
 			return;
 		}
 
@@ -50,25 +45,35 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 function resizeCanvas() {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	canvas.width = Math.max(window.innerWidth, document.documentElement.clientWidth || 0);
+	canvas.height = Math.max(window.innerHeight, document.documentElement.clientHeight || 0);
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
+window.addEventListener('pageshow', resizeCanvas);
 
-function launchConfetti(duration = 5000) {
+function launchConfetti(duration = 5000, options = {}) {
 	if (confettiTimer) clearTimeout(confettiTimer);
 	confettiActive = true;
+	const origin = options.origin || 'spread';
+	const particleCount = options.count || 90;
+	const spread = options.spread || 0.5;
+	const verticalSpeedMin = options.verticalSpeedMin || 2;
+	const verticalSpeedMax = options.verticalSpeedMax || 6;
+	const horizontalSpeed = options.horizontalSpeed || 4;
 	const colors = ['#f5c842','#e85d8a','#9c27b0','#ff9800','#03a9f4','#4caf50','#ff5722'];
-	for (let i = 0; i < 90; i++) {
+	for (let i = 0; i < particleCount; i++) {
+		const baseX = origin === 'center'
+			? canvas.width * 0.5 + (Math.random() - 0.5) * canvas.width * spread
+			: Math.random() * canvas.width;
 		confettiParticles.push({
-			x: Math.random() * canvas.width,
-			y: -10,
+			x: baseX,
+			y: origin === 'center' ? -30 - Math.random() * 40 : -10,
 			w: Math.random() * 10 + 5,
 			h: Math.random() * 5 + 3,
 			color: colors[Math.floor(Math.random() * colors.length)],
-			vx: (Math.random() - 0.5) * 4,
-			vy: Math.random() * 4 + 2,
+			vx: (Math.random() - 0.5) * horizontalSpeed,
+			vy: Math.random() * (verticalSpeedMax - verticalSpeedMin) + verticalSpeedMin,
 			angle: Math.random() * 360,
 			spin: (Math.random() - 0.5) * 8,
 			opacity: 1,
@@ -100,8 +105,6 @@ function drawConfetti() {
 	requestAnimationFrame(drawConfetti);
 }
 drawConfetti();
-// Welcome confetti on load
-window.addEventListener('load', () => setTimeout(() => launchConfetti(3500), 400));
 
 function launchFireworks() {
 	const colors = ['#f5c842','#e85d8a','#9c27b0','#ff9800','#ffffff'];
