@@ -234,7 +234,7 @@ function blowCandles() {
 	 TYPEWRITER EFFECT
 	 ========================================= */
 // 📝 CUSTOMIZE: Edit this message to personalise it
-const typewriterMsg = "Thank you for always supporting me, guiding me, and believing in me even when I didn't believe in myself. Every sacrifice you made, every sleepless night, every silent prayer — I see it all now, and I am so grateful. You are not just my father, Papa. You are my greatest inspiration, my safe harbour, and my hero. Happy Birthday, Papa — may this day be as beautiful as every day you have made mine. ❤️";
+const typewriterMsg = "Thank you for always supporting me, guiding me, and believing in me even when I didn't believe in myself. Every sacrifice you made, every sleepless night, every silent prayer. I see it all now, and I am so grateful. You are not just my father. You are my greatest inspiration, my safe harbour, and my hero. Happy Birthday, Papa! may this day be as beautiful as every day you have made mine. ❤️";
 
 let twIndex = 0;
 let twActive = false;
@@ -326,28 +326,7 @@ themeBtn.addEventListener('click', () => {
 /* =========================================
 	 LIGHTBOX
 	 ========================================= */
-function openLightbox(item) {
-	const img = item.querySelector('img');
-	const lb = document.getElementById('lightbox');
-	const lbImg = document.getElementById('lightbox-img');
-	if (img) {
-		lbImg.src = img.src;
-		lbImg.alt = img.alt || 'Gallery photo';
-		lb.classList.add('open');
-		document.body.style.overflow = 'hidden';
-	}
-}
-
-function closeLightbox(e) {
-	if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.classList.contains('lb-close')) {
-		document.getElementById('lightbox').classList.remove('open');
-		document.body.style.overflow = '';
-	}
-}
-
-document.addEventListener('keydown', (e) => {
-	if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
-});
+/* Lightbox removed (gallery removed) */
 
 /* =========================================
 	 MUSIC PLAYER
@@ -485,77 +464,7 @@ voiceAudio.addEventListener('ended', () => {
 /* =========================================
 	 WISHES WALL — LOCAL STORAGE
 	 ========================================= */
-const WISHES_KEY = 'papa_birthday_wishes_2025';
-
-function loadWishes() {
-	const stored = localStorage.getItem(WISHES_KEY);
-	return stored ? JSON.parse(stored) : getDefaultWishes();
-}
-
-function getDefaultWishes() {
-	return [
-		{ id: Date.now() - 3, author: 'Your Child', text: 'Papa, you are my world. Happy Birthday! Wishing you all the happiness you deserve. ❤️', timestamp: new Date().toLocaleDateString() },
-		{ id: Date.now() - 2, author: 'The Family', text: 'Happy Birthday to the most loving and wonderful father! May this year bring you endless joy! 🎉', timestamp: new Date().toLocaleDateString() },
-	];
-}
-
-function saveWishes(wishes) {
-	localStorage.setItem(WISHES_KEY, JSON.stringify(wishes));
-}
-
-function renderWishes() {
-	const wishes = loadWishes();
-	const wall = document.getElementById('wishes-wall');
-	if (!wall) return;
-	wall.innerHTML = '';
-	wishes.forEach(w => {
-		const card = document.createElement('div');
-		card.className = 'wish-card';
-		card.innerHTML = `
-			<div class="wish-actions">
-				<button class="wish-action-btn" onclick="deleteWish(${w.id})" title="Delete wish" aria-label="Delete this wish">✕</button>
-			</div>
-			<div class="wish-author">💌 ${escapeHtml(w.author)}</div>
-			<div class="wish-text">${escapeHtml(w.text)}</div>
-			<div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.75rem; opacity:0.6;">${w.timestamp}</div>
-		`;
-		wall.appendChild(card);
-	});
-}
-
-function addWish() {
-	const name = document.getElementById('wish-name').value.trim();
-	const text = document.getElementById('wish-text').value.trim();
-	if (!name || !text) {
-		alert('Please enter your name and wish before posting! 🌟');
-		return;
-	}
-	const wishes = loadWishes();
-	wishes.unshift({
-		id: Date.now(),
-		author: name,
-		text,
-		timestamp: new Date().toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' })
-	});
-	saveWishes(wishes);
-	renderWishes();
-	document.getElementById('wish-name').value = '';
-	document.getElementById('wish-text').value = '';
-}
-
-function deleteWish(id) {
-	const wishes = loadWishes().filter(w => w.id !== id);
-	saveWishes(wishes);
-	renderWishes();
-}
-
-function escapeHtml(str) {
-	const d = document.createElement('div');
-	d.textContent = str;
-	return d.innerHTML;
-}
-
-renderWishes();
+/* Wishes functionality removed (section deleted) */
 
 /* =========================================
 	 CERTIFICATE DOWNLOAD
