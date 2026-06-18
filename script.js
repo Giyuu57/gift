@@ -1,3 +1,9 @@
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let confettiParticles = [];
+let confettiActive = false;
+let confettiTimer = null;
+
 function updateClock() {
 	const now = new Date();
 	const dateEl = document.getElementById('live-date');
@@ -38,12 +44,6 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
-
-const canvas = document.getElementById('confetti-canvas');
-const ctx = canvas.getContext('2d');
-let confettiParticles = [];
-let confettiActive = false;
-let confettiTimer = null;
 
 function resizeCanvas() {
 	canvas.width = window.innerWidth;
