@@ -1,6 +1,3 @@
-/* =========================================
-	 LIVE CLOCK
-	 ========================================= */
 function updateClock() {
 	const now = new Date();
 	const dateEl = document.getElementById('live-date');
@@ -11,23 +8,20 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-/* =========================================
-	 COUNTDOWN
-	 ========================================= */
 function updateCountdown() {
 	const now = new Date();
 	const currentYear = now.getFullYear();
-	let target = new Date(currentYear, 5, 19, 0, 0, 0); // June = month 5
+	let target = new Date(currentYear, 5, 19, 0, 0, 0);
 	if (now >= target) {
 		// Check if it's exactly today
 		const isToday = now.getDate() === 19 && now.getMonth() === 5;
 		if (isToday) {
 			document.getElementById('countdown-grid').style.display = 'none';
 			document.getElementById('birthday-today-msg').classList.add('show');
-			launchConfetti(); // auto-celebrate!
+			launchConfetti();
 			return;
 		}
-		// Past this year's birthday → count to next year
+
 		target = new Date(currentYear + 1, 5, 19, 0, 0, 0);
 	}
 
@@ -45,9 +39,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-/* =========================================
-	 CONFETTI ENGINE
-	 ========================================= */
 const canvas = document.getElementById('confetti-canvas');
 const ctx = canvas.getContext('2d');
 let confettiParticles = [];
@@ -108,9 +99,6 @@ drawConfetti();
 // Welcome confetti on load
 window.addEventListener('load', () => setTimeout(() => launchConfetti(6000), 400));
 
-/* =========================================
-	 FIREWORKS
-	 ========================================= */
 function launchFireworks() {
 	const colors = ['#f5c842','#e85d8a','#9c27b0','#ff9800','#ffffff'];
 	for (let i = 0; i < 8; i++) {
@@ -152,9 +140,6 @@ function createFirework(x, y, color) {
 	}
 }
 
-/* =========================================
-	 FLOATING PARTICLES IN HERO
-	 ========================================= */
 function createHeroParticles() {
 	const container = document.getElementById('hero-particles');
 	const emojis = ['✨','⭐','🌟','💫','✦','❤️','🎉','🎊','🎈'];
@@ -174,7 +159,7 @@ function createHeroParticles() {
 		`;
 		container.appendChild(p);
 	}
-	// Balloons
+
 	const balloonEmojis = ['🎈','🎈','🎈','🎉','🎊'];
 	for (let i = 0; i < 5; i++) {
 		const b = document.createElement('div');
@@ -191,16 +176,12 @@ function createHeroParticles() {
 }
 createHeroParticles();
 
-/* =========================================
-	 BIRTHDAY CAKE
-	 ========================================= */
 let candlesBlown = false;
 
 function blowCandles() {
 	if (candlesBlown) return;
 	candlesBlown = true;
 
-	// Extinguish flames
 	['flame1','flame2','flame3'].forEach(id => {
 		const el = document.getElementById(id);
 		if (el) {
@@ -210,19 +191,15 @@ function blowCandles() {
 		}
 	});
 
-	// Update button
 	const btn = document.getElementById('blow-btn');
 	if (btn) { btn.textContent = '🎉 Wish Made!'; btn.disabled = true; btn.style.opacity='0.6'; }
 
-	// Message
 	const msg = document.getElementById('cake-message');
 	if (msg) msg.textContent = 'Your wish is on its way to the stars, Papa! 🌟';
 
-	// Confetti & fireworks
 	launchConfetti(8000);
 	setTimeout(launchFireworks, 500);
 
-	// Try to play birthday audio
 	const audio = document.getElementById('birthday-audio');
 	if (audio && audio.src && audio.src !== window.location.href) {
 		audio.volume = 0.6;
@@ -230,10 +207,6 @@ function blowCandles() {
 	}
 }
 
-/* =========================================
-	 TYPEWRITER EFFECT
-	 ========================================= */
-// 📝 CUSTOMIZE: Edit this message to personalise it
 const typewriterMsg = "Thank you for always supporting me, guiding me, and believing in me even when I didn't believe in myself. Every sacrifice you made, every sleepless night, every silent prayer. I see it all now, and I am so grateful. You are not just my father. You are my greatest inspiration, my safe harbour, and my hero. Happy Birthday, Papa! may this day be as beautiful as every day you have made mine. ❤️";
 
 let twIndex = 0;
@@ -257,14 +230,11 @@ function typeNextChar(el) {
 	}
 }
 
-/* =========================================
-	 SCROLL ANIMATIONS & INTERSECTION OBSERVER
-	 ========================================= */
 const revealObserver = new IntersectionObserver((entries) => {
 	entries.forEach(entry => {
 		if (entry.isIntersecting) {
 			entry.target.classList.add('visible');
-			// Start typewriter when message section is visible
+
 			if (entry.target.closest('#message-section')) startTypewriter();
 			revealObserver.unobserve(entry.target);
 		}
@@ -275,9 +245,6 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => 
 	revealObserver.observe(el);
 });
 
-/* =========================================
-	 NAV ACTIVE HIGHLIGHT + SCROLL
-	 ========================================= */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -293,9 +260,6 @@ const navObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(s => navObserver.observe(s));
 
-/* =========================================
-	 MOBILE MENU
-	 ========================================= */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -311,9 +275,6 @@ function closeMobileMenu() {
 	mobileMenu.setAttribute('aria-hidden', true);
 }
 
-/* =========================================
-	 DARK / LIGHT THEME TOGGLE
-	 ========================================= */
 const themeBtn = document.getElementById('theme-toggle');
 let lightMode = false;
 
@@ -323,14 +284,6 @@ themeBtn.addEventListener('click', () => {
 	themeBtn.textContent = lightMode ? '☀️' : '🌙';
 });
 
-/* =========================================
-	 LIGHTBOX
-	 ========================================= */
-/* Lightbox removed (gallery removed) */
-
-/* =========================================
-	 MUSIC PLAYER
-	 ========================================= */
 const audio = document.getElementById('birthday-audio');
 const playBtn = document.getElementById('play-pause-btn');
 const disc = document.getElementById('player-disc');
@@ -396,9 +349,6 @@ volSlider.addEventListener('input', () => {
 
 audio.volume = 0.8;
 
-/* =========================================
-	 GIFT BOX
-	 ========================================= */
 let giftOpened = false;
 
 function openGift() {
@@ -420,14 +370,10 @@ function openGift() {
 	}, 500);
 }
 
-// Keyboard support for gift box
 document.getElementById('gift-box').addEventListener('keydown', (e) => {
 	if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGift(); }
 });
 
-/* =========================================
-	 VOICE MESSAGE
-	 ========================================= */
 const voiceAudio = document.getElementById('voice-audio');
 const voiceBtn = document.getElementById('voice-btn');
 const voiceWaveform = document.getElementById('voice-waveform');
@@ -435,12 +381,12 @@ let voicePlaying = false;
 
 function toggleVoice() {
 	if (!voiceAudio.src || voiceAudio.src === window.location.href) {
-		// Simulate playback visually
+
 		if (!voicePlaying) {
 			voicePlaying = true;
 			voiceBtn.textContent = '⏸';
 			voiceWaveform.classList.remove('voice-paused');
-			// Auto-stop after 5 seconds (demo)
+
 			setTimeout(() => {
 				voicePlaying = false;
 				voiceBtn.textContent = '▶';
@@ -469,15 +415,6 @@ voiceAudio.addEventListener('ended', () => {
 	voiceWaveform.classList.add('voice-paused');
 });
 
-/* =========================================
-	 WISHES WALL — LOCAL STORAGE
-	 ========================================= */
-/* Wishes functionality removed (section deleted) */
-
-/* =========================================
-	 CERTIFICATE DOWNLOAD
-	 Using html2canvas via CDN
-	 ========================================= */
 function downloadCertificate() {
 	// Fallback: open a print-friendly version
 	const certEl = document.getElementById('certificate-el');

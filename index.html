@@ -15,10 +15,8 @@
 </head>
 <body>
 
-<!-- Confetti Canvas -->
 <canvas id="confetti-canvas"></canvas>
 
-<!-- ===================== NAVIGATION ===================== -->
 <nav id="navbar" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">Papa ❤️</a>
@@ -40,7 +38,6 @@
   </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <a href="#countdown" onclick="closeMobileMenu()">⏳ Countdown</a>
   <a href="#cake-section" onclick="closeMobileMenu()">🎂 Birthday Cake</a>
@@ -50,7 +47,6 @@
   <a href="#certificate-section" onclick="closeMobileMenu()">🏅 Certificate</a>
 </div>
 
-<!-- ===================== HERO ===================== -->
 <section id="hero" aria-label="Birthday greeting">
   <div class="hero-particles" id="hero-particles"></div>
 
@@ -83,7 +79,6 @@
   </div>
 </section>
 
-<!-- ===================== COUNTDOWN ===================== -->
 <section id="countdown" aria-label="Countdown to birthday">
   <div class="container">
     <div class="reveal" style="text-align:center;">
@@ -119,7 +114,6 @@
   </div>
 </section>
 
-<!-- ===================== BIRTHDAY CAKE ===================== -->
 <section id="cake-section" aria-label="Interactive birthday cake">
   <div class="container">
     <div style="text-align:center;" class="reveal">
@@ -128,70 +122,70 @@
     </div>
 
     <div class="cake-wrapper reveal" id="cake-wrapper" onclick="blowCandles()">
-      <!-- Birthday Cake SVG -->
+
       <svg class="cake-svg" width="320" height="360" viewBox="0 0 320 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Birthday cake with candles">
-        <!-- plate shadow -->
+
         <ellipse cx="160" cy="340" rx="130" ry="12" fill="rgba(0,0,0,0.2)"/>
-        <!-- bottom tier -->
+
         <rect x="30" y="240" width="260" height="90" rx="8" fill="#c2185b"/>
         <rect x="30" y="240" width="260" height="20" rx="8" fill="#e85d8a"/>
-        <!-- bottom tier stripes -->
+
         <rect x="30" y="248" width="260" height="6" fill="rgba(255,255,255,0.12)"/>
         <rect x="30" y="264" width="260" height="6" fill="rgba(255,255,255,0.12)"/>
         <rect x="30" y="280" width="260" height="6" fill="rgba(255,255,255,0.12)"/>
-        <!-- frosting bottom -->
+
         <path d="M30 240 Q50 220 70 240 Q90 220 110 240 Q130 220 150 240 Q170 220 190 240 Q210 220 230 240 Q250 220 270 240 Q285 220 290 240" fill="white" opacity="0.92"/>
-        <!-- middle tier -->
+
         <rect x="55" y="165" width="210" height="80" rx="8" fill="#6a1b9a"/>
         <rect x="55" y="165" width="210" height="20" rx="8" fill="#9c27b0"/>
-        <!-- middle tier dots -->
+
         <circle cx="90" cy="195" r="5" fill="rgba(255,255,255,0.25)"/>
         <circle cx="120" cy="205" r="4" fill="rgba(255,255,255,0.2)"/>
         <circle cx="155" cy="195" r="6" fill="rgba(255,255,255,0.2)"/>
         <circle cx="190" cy="205" r="4" fill="rgba(255,255,255,0.25)"/>
         <circle cx="225" cy="195" r="5" fill="rgba(255,255,255,0.2)"/>
-        <!-- frosting middle -->
+
         <path d="M55 165 Q70 148 85 165 Q100 148 115 165 Q130 148 145 165 Q160 148 175 165 Q190 148 205 165 Q220 148 235 165 Q250 148 265 165" fill="white" opacity="0.92"/>
         <!-- top tier -->
         <rect x="90" y="105" width="140" height="65" rx="8" fill="#f57f17"/>
         <rect x="90" y="105" width="140" height="18" rx="8" fill="#ff9800"/>
-        <!-- heart decorations -->
+
         <text x="130" y="140" font-size="18" fill="rgba(255,255,255,0.35)" font-family="serif">♥</text>
         <text x="165" y="140" font-size="18" fill="rgba(255,255,255,0.35)" font-family="serif">♥</text>
-        <!-- frosting top -->
+
         <path d="M90 105 Q103 90 116 105 Q129 90 142 105 Q155 90 168 105 Q181 90 194 105 Q207 90 220 105 Q226 92 230 105" fill="white" opacity="0.92"/>
 
-        <!-- CANDLE 1 -->
+
         <rect x="115" y="68" width="14" height="42" rx="3" fill="#ff6f00"/>
         <rect x="115" y="68" width="14" height="10" rx="2" fill="#ffa000"/>
-        <!-- Flame 1 -->
+
         <g class="flame" id="flame1">
           <ellipse cx="122" cy="57" rx="6" ry="10" fill="#FFF176" opacity="0.95"/>
           <ellipse cx="122" cy="60" rx="4" ry="7" fill="#FFD740"/>
           <ellipse cx="122" cy="63" rx="2.5" ry="4" fill="#FF6D00"/>
         </g>
 
-        <!-- CANDLE 2 -->
+
         <rect x="153" y="60" width="14" height="50" rx="3" fill="#e91e63"/>
         <rect x="153" y="60" width="14" height="10" rx="2" fill="#f06292"/>
-        <!-- Flame 2 -->
+
         <g class="flame" id="flame2">
           <ellipse cx="160" cy="49" rx="6" ry="10" fill="#FFF176" opacity="0.95"/>
           <ellipse cx="160" cy="52" rx="4" ry="7" fill="#FFD740"/>
           <ellipse cx="160" cy="55" rx="2.5" ry="4" fill="#FF6D00"/>
         </g>
 
-        <!-- CANDLE 3 -->
+
         <rect x="191" y="68" width="14" height="42" rx="3" fill="#1565c0"/>
         <rect x="191" y="68" width="14" height="10" rx="2" fill="#1e88e5"/>
-        <!-- Flame 3 -->
+
         <g class="flame" id="flame3">
           <ellipse cx="198" cy="57" rx="6" ry="10" fill="#FFF176" opacity="0.95"/>
           <ellipse cx="198" cy="60" rx="4" ry="7" fill="#FFD740"/>
           <ellipse cx="198" cy="63" rx="2.5" ry="4" fill="#FF6D00"/>
         </g>
 
-        <!-- Text on cake -->
+
         <text x="160" y="217" text-anchor="middle" fill="white" font-family="'Dancing Script', cursive" font-size="18" opacity="0.9">Happy Birthday</text>
         <text x="160" y="272" text-anchor="middle" fill="white" font-family="'Dancing Script', cursive" font-size="20" font-weight="bold">Papa ❤️</text>
       </svg>
@@ -206,7 +200,7 @@
   </div>
 </section>
 
-<!-- ===================== PERSONAL MESSAGE (TYPEWRITER) ===================== -->
+
 <section id="message-section" aria-label="Personal message">
   <div class="container">
     <div style="text-align:center;" class="reveal">
@@ -221,7 +215,7 @@
   </div>
 </section>
 
-<!-- ===================== APPRECIATION CARDS ===================== -->
+
 <section id="appreciation" aria-label="Appreciation cards for Papa">
   <div class="container">
     <div class="reveal">
@@ -231,26 +225,26 @@
     </div>
 
     <div class="cards-grid">
-      <!-- Card 1 -->
+
       <div class="appreciation-card reveal" style="--accent-from:#f57f17; --accent-to:#ff9800; --delay:0s;">
         <div class="card-ribbon">Certified</div>
         <span class="card-icon" style="--delay:0s;">🏆</span>
         <h3>World's Best Father</h3>
         <p>You set the gold standard of what a father should be that are patient, loving, and unwaveringly strong.</p>
       </div>
-      <!-- Card 2 -->
+
       <div class="appreciation-card reveal" style="--accent-from:#6a1b9a; --accent-to:#9c27b0; --delay:0.15s;">
         <span class="card-icon" style="--delay:0.15s;">🌟</span>
         <h3>Greatest Supporter</h3>
         <p>Through every dream and every stumble, you were there cheering the loudest, believing the most.</p>
       </div>
-      <!-- Card 3 -->
+
       <div class="appreciation-card reveal" style="--accent-from:#1565c0; --accent-to:#1976d2; --delay:0.3s;">
         <span class="card-icon" style="--delay:0.3s;">📖</span>
         <h3>Life Mentor</h3>
         <p>Every lesson you taught, every word of wisdom you shared they live in me and guide me every day.</p>
       </div>
-      <!-- Card 4 -->
+  
       <div class="appreciation-card reveal" style="--accent-from:#b71c1c; --accent-to:#e53935; --delay:0.45s;">
         <span class="card-icon" style="--delay:0.45s;">🦁</span>
         <h3>Family Hero</h3>
@@ -260,7 +254,7 @@
   </div>
 </section>
 
-<!-- ===================== TIMELINE ===================== -->
+
 <section id="timeline" aria-label="Timeline of precious memories">
   <div class="container">
     <div class="reveal">
@@ -334,17 +328,12 @@
   </div>
 </section>
 
-<!-- ===================== GALLERY ===================== -->
-<!-- Gallery removed -->
-
-<!-- ===================== MUSIC PLAYER ===================== -->
 <section id="music-section" aria-label="Birthday music player">
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <p class="section-label">The Soundtrack</p>
       <h2 class="section-title">Birthday Serenade 🎵</h2>
       <p class="section-sub" style="margin:0 auto 0;">
-        <!-- 📝 CUSTOMIZE: Replace the audio src below with your own song file -->
         A little musical celebration, just for you Papa.
       </p>
     </div>
@@ -379,7 +368,6 @@
   </div>
 </section>
 
-<!-- ===================== GIFT BOX ===================== -->
 <section id="gift-section" aria-label="Surprise gift for Papa">
   <div class="container">
     <div class="reveal" style="text-align:center;">
@@ -391,26 +379,26 @@
     <div id="gift-box-wrap" style="text-align:center;">
       <div class="gift-wrap reveal" id="gift-box" onclick="openGift()" aria-label="Click to open your surprise gift" role="button" tabindex="0">
         <svg width="160" height="180" viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- shadow -->
+
           <ellipse cx="80" cy="174" rx="60" ry="7" fill="rgba(0,0,0,0.2)"/>
-          <!-- box body -->
+
           <rect x="15" y="80" width="130" height="90" rx="6" fill="#c62828"/>
           <rect x="15" y="80" width="130" height="25" rx="4" fill="#e53935"/>
-          <!-- box lid -->
+
           <rect x="8" y="55" width="144" height="35" rx="6" fill="#e53935"/>
           <rect x="8" y="55" width="144" height="14" rx="6" fill="#ef5350"/>
-          <!-- vertical ribbon -->
+
           <rect x="72" y="55" width="16" height="115" fill="#ffd600" opacity="0.9"/>
-          <!-- horizontal ribbon on lid -->
+
           <rect x="8" y="65" width="144" height="14" fill="#ffd600" opacity="0.85"/>
-          <!-- bow loops left -->
+
           <ellipse cx="64" cy="46" rx="28" ry="18" fill="#ffd600" transform="rotate(-20 64 46)"/>
-          <!-- bow loops right -->
+
           <ellipse cx="96" cy="46" rx="28" ry="18" fill="#ffd600" transform="rotate(20 96 46)"/>
-          <!-- bow centre -->
+
           <circle cx="80" cy="48" r="12" fill="#ff6f00"/>
           <circle cx="80" cy="48" r="6" fill="#ffd600"/>
-          <!-- sparkles on box -->
+
           <text x="35" y="130" font-size="18" fill="rgba(255,255,255,0.3)">★</text>
           <text x="105" y="148" font-size="14" fill="rgba(255,255,255,0.25)">★</text>
           <text x="118" y="115" font-size="11" fill="rgba(255,255,255,0.2)">✦</text>
@@ -420,7 +408,7 @@
       <div class="gift-open-msg" id="gift-open-msg">
         <div class="gift-card">
           <h3>🎉 A Gift from the Heart</h3>
-          <!-- 📝 CUSTOMIZE: Replace this message with your own special note -->
+
           <p>
             Papa, no gift in the world can match everything you've given me,
             your time, your wisdom, your endless love, and your sacrifice.
@@ -435,10 +423,6 @@
   </div>
 </section>
 
-<!-- ===================== WISHES WALL ===================== -->
-<!-- Wishes section removed -->
-
-<!-- ===================== VOICE MESSAGE ===================== -->
 <section id="voice-section" aria-label="Voice message for Papa">
   <div class="container">
     <div class="reveal" style="text-align:center;">
@@ -448,7 +432,6 @@
 
     <div class="voice-card reveal">
       <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.5rem; font-style:italic;">
-        <!-- 📝 CUSTOMIZE: Record a voice note and add it as an audio source below -->
         A message from the heart — press play to hear it, Papa.
       </p>
 
@@ -468,7 +451,6 @@
       </div>
 
       <div class="voice-controls">
-        <!-- 📝 Replace the onclick with actual audio playback once you add your voice recording -->
         <button class="player-btn main" id="voice-btn" onclick="toggleVoice()" aria-label="Play voice message">▶</button>
       </div>
 
@@ -476,13 +458,11 @@
         "Happy Birthday Papa, I love uhh so much!" ❤️
       </p>
 
-      <!-- 📝 CUSTOMIZE: Add your voice recording audio file here -->
       <audio id="voice-audio" src="voice.OGG" preload="none"></audio>
     </div>
   </div>
 </section>
 
-<!-- ===================== CERTIFICATE ===================== -->
 <section id="certificate-section" aria-label="Birthday certificate">
   <div class="container">
     <div class="reveal" style="text-align:center;">
@@ -493,7 +473,6 @@
       </p>
     </div>
 
-    <!-- Certificate Preview -->
     <div class="certificate-preview reveal" id="certificate-el">
       <div class="cert-corner tl">✦</div>
       <div class="cert-corner tr">✦</div>
@@ -506,7 +485,7 @@
       <p class="cert-body">
         This certificate is proudly presented to
       </p>
-      <!-- 📝 CUSTOMIZE: Replace "Dear Papa" with your father's actual name -->
+
       <div class="cert-recipient">Suman Singh Meena</div>
       <p class="cert-body">
         In recognition of a lifetime of unconditional love, tireless sacrifice,
@@ -533,7 +512,6 @@
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="footer-heart">❤️</div>
   <p>Made with love for the world's greatest Papa · 19 June 2025 🎂</p>

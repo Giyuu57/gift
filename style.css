@@ -803,11 +803,6 @@
     line-height: 1.6;
   }
 
-  /* Gallery and lightbox styles removed */
-
-  /* =========================================
-     8. MUSIC PLAYER
-     ========================================= */
   #music-section {
     background: var(--plum-mid);
     text-align: center;
@@ -945,9 +940,6 @@
     box-shadow: 0 0 8px rgba(245,200,66,0.5);
   }
 
-  /* =========================================
-     9. GIFT BOX
-     ========================================= */
   #gift-section {
     background: var(--plum-deep);
     text-align: center;
@@ -1001,18 +993,13 @@
     font-style: italic;
   }
 
-  /* fireworks */
   .firework {
     position: fixed;
     pointer-events: none;
     z-index: 9998;
   }
 
-  /* Wishes styles removed */
 
-  /* =========================================
-     11. VOICE MESSAGE
-     ========================================= */
   #voice-section {
     background: var(--plum-deep);
     text-align: center;
@@ -1071,9 +1058,6 @@
     gap: 1rem;
   }
 
-  /* =========================================
-     12. CERTIFICATE
-     ========================================= */
   #certificate-section {
     background: var(--plum-mid);
     text-align: center;
@@ -1192,9 +1176,6 @@
     box-shadow: 0 12px 40px rgba(245,200,66,0.5);
   }
 
-  /* =========================================
-     FOOTER
-     ========================================= */
   footer {
     background: var(--plum-deep);
     border-top: 1px solid var(--glass-border);
@@ -1221,14 +1202,8 @@
     font-style: italic;
   }
 
-  /* =========================================
-     AUDIO (hidden)
-     ========================================= */
   audio { display: none; }
 
-  /* =========================================
-     RESPONSIVE TWEAKS
-     ========================================= */
   @media (max-width: 480px) {
     section { padding: 3.5rem 1rem; }
     .typewriter-wrap { padding: 2rem 1.25rem; }
