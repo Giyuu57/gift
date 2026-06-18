@@ -189,6 +189,9 @@ function blowCandles() {
 	if (candlesBlown) return;
 	candlesBlown = true;
 
+	const cake = document.getElementById('cake-wrapper');
+	if (cake) cake.classList.add('candles-blown');
+
 	['flame1','flame2','flame3'].forEach(id => {
 		const el = document.getElementById(id);
 		if (el) {
@@ -423,48 +426,28 @@ voiceAudio.addEventListener('ended', () => {
 });
 
 function downloadCertificate() {
-	// Fallback: open a print-friendly version
 	const certEl = document.getElementById('certificate-el');
-	const win = window.open('', '_blank', 'width=800,height=600');
-	if (!win) { alert('Please allow pop-ups to download the certificate.'); return; }
+	if (!certEl) return;
 
-	const styles = `
-		@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600;700&family=Inter:wght@400;600&display=swap');
-		body { margin:0; padding:40px; background:#1a0533; display:flex; justify-content:center; align-items:center; min-height:100vh; font-family:'Inter',sans-serif; }
-		.cert { max-width:640px; width:100%; background:linear-gradient(135deg,#1e0840,#2d0d55,#1a0533); border:2px solid #f5c842; border-radius:12px; padding:3.5rem 3rem; position:relative; box-shadow:0 0 60px rgba(245,200,66,0.2); color:#fdf8f0; text-align:center; }
-		.cert::before,.cert::after { content:''; position:absolute; border:1px solid rgba(245,200,66,0.3); border-radius:8px; }
-		.cert::before { inset:12px; }
-		.cert::after { inset:18px; }
-		.cert-seal { font-size:4rem; margin-bottom:1rem; }
-		.cert-label { font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:#f5c842; margin-bottom:0.5rem; }
-		.cert-title { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700; color:#f5c842; line-height:1.2; margin-bottom:1.25rem; }
-		.cert-body { font-family:'Playfair Display',serif; font-size:1rem; color:rgba(253,248,240,0.8); line-height:1.8; font-style:italic; margin-bottom:1rem; }
-		.cert-recipient { font-family:'Dancing Script',cursive; font-size:2.5rem; color:#fff; margin:0.5rem 0 1.5rem; }
-		.cert-footer { display:flex; justify-content:space-between; align-items:flex-end; font-size:0.8rem; color:rgba(253,248,240,0.5); position:relative; z-index:1; }
-		.cert-signature { font-family:'Dancing Script',cursive; font-size:1.4rem; color:#f4a0bf; }
-		.cert-corner { position:absolute; font-size:2rem; opacity:0.3; }
-		.tl { top:30px; left:30px; } .tr { top:30px; right:30px; } .bl { bottom:30px; left:30px; } .br { bottom:30px; right:30px; }
-		@media print { body { background:white; padding:0; } .cert { box-shadow:none; } }
-	`;
+	const win = window.open('', '_blank', 'width=900,height=1200');
+	if (!win) {
+		alert('Please allow pop-ups to open the certificate preview.');
+		return;
+	}
 
-	win.document.write(`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Birthday Certificate - Papa</title><style>${styles}</style></head><body>
-		<div class="cert">
-			<div class="cert-corner tl">✦</div>
-			<div class="cert-corner tr">✦</div>
-			<div class="cert-corner bl">✦</div>
-			<div class="cert-corner br">✦</div>
-			<div class="cert-seal">🏅</div>
-			<p class="cert-label">Certificate of Excellence · 19 June 2025</p>
-			<h2 class="cert-title">World's Best Father</h2>
-			<p class="cert-body">This certificate is proudly presented to</p>
-			<div class="cert-recipient">Dear Papa</div>
-			<p class="cert-body">In recognition of a lifetime of unconditional love, tireless sacrifice, unwavering strength, and being the greatest hero in your child's life. Your love has been the greatest gift the universe ever gave us.</p>
-			<div class="cert-footer">
-				<div><div class="cert-signature">With all my love</div><div style="border-top:1px solid rgba(253,248,240,0.3);padding-top:4px;margin-top:4px;">Your Child</div></div>
-				<div style="text-align:right;"><div style="font-size:1.5rem;margin-bottom:4px;">❤️</div><div>19 June 2025</div></div>
-			</div>
-		</div>
-		<script>window.onload=()=>{window.print();}<\/script>
-	</body></html>`);
+	const styleTags = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'))
+		.map(node => node.outerHTML)
+		.join('\n');
+	const certHtml = certEl.outerHTML;
+	const doc = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Birthday Certificate - Papa</title>${styleTags}
+		<style>
+			body { margin:0; padding:40px; background:#1a0533; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+			#certificate-el { width:min(100%, 760px); }
+			@media print { body { background:white; padding:0; } }
+		</style>
+	</head><body>${certHtml}<script>window.onload = () => window.print();<\/script></body></html>`;
+
+	win.document.open();
+	win.document.write(doc);
 	win.document.close();
 }

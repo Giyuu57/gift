@@ -519,6 +519,18 @@
     transform-origin: 50% 100%;
   }
 
+    .cake-wrapper.candles-blown .flame {
+      opacity: 0;
+      transform: scale(0.25);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      animation: none;
+    }
+
+    .cake-wrapper.candles-blown .candle-tip {
+      opacity: 0.35;
+      transition: opacity 0.35s ease;
+    }
+
   @keyframes flicker {
     0% { transform: scaleX(1) scaleY(1) rotate(-2deg); opacity: 1; }
     100% { transform: scaleX(0.85) scaleY(1.1) rotate(2deg); opacity: 0.85; }
@@ -1072,6 +1084,7 @@
     padding: 3.5rem 3rem;
     position: relative;
     overflow: hidden;
+    text-align: center;
     box-shadow: 0 0 60px rgba(245,200,66,0.15), inset 0 0 60px rgba(245,200,66,0.03);
   }
 
