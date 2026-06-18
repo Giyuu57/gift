@@ -339,6 +339,10 @@ const currentEl = document.getElementById('player-current');
 const totalEl = document.getElementById('player-total');
 const volSlider = document.getElementById('volume-slider');
 
+if (audio) {
+	audio.load();
+}
+
 function fmt(s) {
 	const m = Math.floor(s/60);
 	const sec = Math.floor(s%60);
@@ -351,9 +355,13 @@ function togglePlay() {
 		return;
 	}
 	if (audio.paused) {
-		audio.play();
-		playBtn.textContent = '⏸';
-		disc.classList.add('spinning');
+		audio.play().then(() => {
+			playBtn.textContent = '⏸';
+			disc.classList.add('spinning');
+		}).catch(() => {
+			playBtn.textContent = '▶';
+			disc.classList.remove('spinning');
+		});
 	} else {
 		audio.pause();
 		playBtn.textContent = '▶';
