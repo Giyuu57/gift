@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 let confettiParticles = [];
 let confettiActive = false;
 let confettiTimer = null;
+let birthdayConfettiShown = false;
 
 function updateClock() {
 	const now = new Date();
@@ -24,7 +25,10 @@ function updateCountdown() {
 		if (isToday) {
 			document.getElementById('countdown-grid').style.display = 'none';
 			document.getElementById('birthday-today-msg').classList.add('show');
-			launchConfetti();
+			if (!birthdayConfettiShown) {
+				birthdayConfettiShown = true;
+				launchConfetti(8000);
+			}
 			return;
 		}
 
@@ -56,7 +60,7 @@ function launchConfetti(duration = 5000) {
 	if (confettiTimer) clearTimeout(confettiTimer);
 	confettiActive = true;
 	const colors = ['#f5c842','#e85d8a','#9c27b0','#ff9800','#03a9f4','#4caf50','#ff5722'];
-	for (let i = 0; i < 180; i++) {
+	for (let i = 0; i < 90; i++) {
 		confettiParticles.push({
 			x: Math.random() * canvas.width,
 			y: -10,
@@ -97,7 +101,7 @@ function drawConfetti() {
 }
 drawConfetti();
 // Welcome confetti on load
-window.addEventListener('load', () => setTimeout(() => launchConfetti(6000), 400));
+window.addEventListener('load', () => setTimeout(() => launchConfetti(3500), 400));
 
 function launchFireworks() {
 	const colors = ['#f5c842','#e85d8a','#9c27b0','#ff9800','#ffffff'];
@@ -144,7 +148,7 @@ function createHeroParticles() {
 	const container = document.getElementById('hero-particles');
 	const emojis = ['✨','⭐','🌟','💫','✦','❤️','🎉','🎊','🎈'];
 	// Particles
-	for (let i = 0; i < 24; i++) {
+	for (let i = 0; i < 12; i++) {
 		const p = document.createElement('div');
 		p.className = 'particle';
 		const size = Math.random() * 6 + 3;
@@ -161,7 +165,7 @@ function createHeroParticles() {
 	}
 
 	const balloonEmojis = ['🎈','🎈','🎈','🎉','🎊'];
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < 3; i++) {
 		const b = document.createElement('div');
 		b.className = 'balloon';
 		b.textContent = balloonEmojis[i % balloonEmojis.length];
