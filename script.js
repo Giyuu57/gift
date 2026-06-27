@@ -19,7 +19,7 @@ function updateCountdown() {
 	const currentYear = now.getFullYear();
 	let target = new Date(currentYear, 5, 19, 0, 0, 0);
 	if (now >= target) {
-		// Check if it's exactly today
+
 		const isToday = now.getDate() === 19 && now.getMonth() === 5;
 		if (isToday) {
 			document.getElementById('countdown-grid').style.display = 'none';
